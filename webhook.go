@@ -9,15 +9,18 @@ import (
 type Thumbnail struct {
 	URL string `json:"url"`
 }
+
 type Fields struct {
 	Name   string `json:"name"`
 	Value  string `json:"value"`
 	Inline bool   `json:"inline"`
 }
+
 type Footer struct {
 	Text    string `json:"text"`
 	IconURL string `json:"icon_url"`
 }
+
 type Embed struct {
 	Title     string    `json:"title"`
 	URL       string    `json:"url"`
@@ -27,6 +30,7 @@ type Embed struct {
 	Fields    []Fields  `json:"fields"`
 	Footer    Footer    `json:"footer"`
 }
+
 type Webhook struct {
 	Username  string  `json:"username"`
 	AvatarURL string  `json:"avatar_url"`
