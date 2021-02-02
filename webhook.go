@@ -53,6 +53,15 @@ func CreateWebhook() Webhook {
 	return Wh
 }
 
+// adds a footer
+
+func (wh *Webhook) AddFooter(text string, iconURL string) {
+	wh.Embeds[0].Footer = Footer{
+		Text:    text,
+		IconURL: iconURL,
+	}
+}
+
 // add a username to the webhook
 
 func (wh *Webhook) SetWebhookUsername(username string) {
