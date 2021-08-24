@@ -22,13 +22,14 @@ type Footer struct {
 }
 
 type Embed struct {
-	Title     string    `json:"title"`
-	URL       string    `json:"url"`
-	Color     int       `json:"color"`
-	Timestamp string    `json:"timestamp"`
-	Thumbnail Thumbnail `json:"thumbnail"`
-	Fields    []Fields  `json:"fields"`
-	Footer    Footer    `json:"footer"`
+	Title       string    `json:"title"`
+	URL         string    `json:"url"`
+	Description string    `json:"description"`
+	Color       int       `json:"color"`
+	Timestamp   string    `json:"timestamp"`
+	Thumbnail   Thumbnail `json:"thumbnail"`
+	Fields      []Fields  `json:"fields"`
+	Footer      Footer    `json:"footer"`
 }
 
 type Webhook struct {
@@ -45,8 +46,9 @@ func CreateWebhook() Webhook {
 		AvatarURL: "",
 		Embeds: []Embed{
 			{
-				Title:     "",
-				URL:       "",
+				Title:       "",
+				URL:         "",
+				Description: "",
 				Color:     16411130,
 				Thumbnail: Thumbnail{URL: ""},
 				Fields:    []Fields{},
@@ -82,6 +84,12 @@ func (wh *Webhook) SetWebhookAvatarURL(avatarURL string) {
 
 func (wh *Webhook) SetTitle(title string) {
 	wh.Embeds[0].Title = title
+}
+
+// add a description to the webhook
+
+func (wh *Webhook) SetDescription(description string) {
+	wh.Embeds[0].Description = description
 }
 
 // add a url to the webhook
