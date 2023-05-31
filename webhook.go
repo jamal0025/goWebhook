@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"net/http"
+	"time"
 )
 
 type Thumbnail struct {
@@ -42,16 +43,16 @@ type Webhook struct {
 
 func CreateWebhook() Webhook {
 	Wh := Webhook{
-		Username:  "",
+		Username:  "Webhook", // requires default username
 		AvatarURL: "",
 		Embeds: []Embed{
 			{
 				Title:       "",
 				URL:         "",
 				Description: "",
-				Color:     16411130,
-				Thumbnail: Thumbnail{URL: ""},
-				Fields:    []Fields{},
+				Color:       16411130,
+				Thumbnail:   Thumbnail{URL: ""},
+				Fields:      []Fields{},
 			},
 		},
 	}
@@ -90,6 +91,15 @@ func (wh *Webhook) SetTitle(title string) {
 
 func (wh *Webhook) SetDescription(description string) {
 	wh.Embeds[0].Description = description
+}
+
+// add timestamp to webhook
+func (wh *Webhook) SetTimestamp(epoch int64, dynamic bool) {
+	if dynamic {
+		wh.Embeds[0].Timestamp = time.Now().Format(time.RFC3339)
+	} else {
+		wh.Embeds[0].Timestamp = time.Unix(epoch, 0).Format(time.RFC3339)
+	}
 }
 
 // add a url to the webhook
